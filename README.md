@@ -1,6 +1,6 @@
 # Support Workflow Kit
 
-A zero-dependency Node.js workspace readiness package for macOS support operators. The normal setup script writes `.workflow/status.txt` and opens the configured Apple application, `com.apple.calculator`.
+A zero-dependency Node.js workspace readiness package for macOS support operators. The normal setup script writes `.workflow/status.txt` and opens the configured Apple application..
 
 ## Usage
 
