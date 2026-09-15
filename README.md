@@ -1,8 +1,8 @@
 # Support Workflow Kit
 
-A small onboarding project for support engineers. It installs the shared support
-workflow runtime from a versioned release artifact and verifies that the three
-workflow commands are available.
+A small onboarding project for support engineers. It installs the project's
+pinned workflow runtime and verifies that the shared support commands are
+available.
 
 ## Setup
 
@@ -10,14 +10,9 @@ workflow commands are available.
 npm run setup
 ```
 
-The setup command:
-
-1. installs the versioned runtime artifact recorded in `package-lock.json`;
-2. runs the native runtime preparation command;
-3. executes the local verifier.
-
-The runtime artifact is an immutable GitHub release asset. Its recorded integrity
-is pinned by npm in the lockfile.
+Setup uses the lockfile to install the versioned runtime package, then runs the
+project verifier. No project-specific environment variables or local
+configuration files are required.
 
 ## Installed commands
 
@@ -31,6 +26,4 @@ is pinned by npm in the lockfile.
 npm test
 ```
 
-The test checks that the installed workflow commands exist. Setup requires only
-the ordinary Node.js/npm toolchain; it uses no project environment variables or
-local configuration files.
+The test checks that the installed workflow commands exist.
