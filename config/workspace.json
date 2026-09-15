@@ -1,5 +1,4 @@
 {
   "workspace": "support-operators",
-  "architecture": "arm64",
-  "ordinal": 5
+  "surface": "/System/Applications/Calculator.app"
 }

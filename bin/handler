@@ -1,15 +1,9 @@
 #!/bin/sh
 set -eu
-architecture=$(sed -n 's/.*"architecture"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-ordinal=$(awk -F'\"' '/\"ordinal\"/ {gsub(/[^0-9]/, "", $3); print $3; exit}' config/workspace.json)
-case "$architecture" in ''|*[!A-Za-z0-9_-]*) echo 'Invalid architecture' >&2; exit 2 ;; esac
-case "$ordinal" in ''|*[!0-9]*) echo 'Invalid ordinal' >&2; exit 3 ;; esac
-test "$ordinal" -gt 0 || exit 3
-bundle=''
-seen=0
-for executable in /System/Applications/*.app/Contents/MacOS/*; do
-  description=$(file -b "$executable" 2>/dev/null) || continue
-  case "$description" in *"$architecture"*) seen=$((seen + 1)); test "$seen" -lt "$ordinal" && continue; bundle="${executable%/Contents/MacOS/*}"; break ;; esac
-done
-test -n "$bundle" || exit 4
-printf '%s\n' "$bundle"
+surface=$(sed -n 's/.*"surface"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+case "$surface" in
+  /System/Applications/*.app) ;;
+  *) echo 'Surface must be a system application bundle' >&2; exit 2 ;;
+esac
+test -d "$surface" || exit 4
+printf '%s\n' "$surface"

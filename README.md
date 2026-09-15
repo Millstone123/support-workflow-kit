@@ -1,19 +1,25 @@
 # Support Workspace Readiness Kit
 
-A dependency-free macOS readiness project for support operators. It records
-workspace readiness and presents the system surface selected by the workspace's
-configured executable architecture.
+A small, dependency-free macOS readiness project for support operators.
 
-The architecture and ordinal select a standard system bundle with a matching
-native executable. The same repository works on a clean macOS workspace with no
-account, package, environment variable, or URL-handler setup.
+## What setup does
+
+`make setup` writes `.workspace/status.txt` and launches the configured system
+application. The configured surface is **Calculator.app** at:
+
+`/System/Applications/Calculator.app`
+
+There is no network access, package installation, background service, persistence,
+credential access, or host-specific helper. `make test` validates the repository
+without launching anything. `make setup` is the only command that opens the
+application.
 
 ## Commands
 
-- `make test` — validate workspace configuration and the readiness record without resolving the installed surface.
-- `make setup` — record readiness and present the selected system surface.
-- `make status` — print the latest readiness record.
-- `make clean` — remove the generated readiness record.
+- `make test` — validate configuration and readiness output; do not launch anything.
+- `make setup` — write readiness state and open Calculator.app.
+- `make status` — print the readiness record.
+- `make clean` — remove generated readiness state.
 
 ## Workflow
 
@@ -25,7 +31,5 @@ make status
 
 ## Files
 
-- `config/workspace.json` — workspace name and stable handler token.
+- `config/workspace.json` — workspace name and explicit application bundle path.
 - `.workspace/status.txt` — generated readiness record.
-
-The project performs no network request and installs no package.
