@@ -1,3 +1,2 @@
-node_modules/
-.workflow/
-package-lock.json
+.DS_Store
+.support/
