@@ -4,8 +4,5 @@
   "private": true,
   "bin": {
     "workspace-kit": "bin/cli.js"
-  },
-  "scripts": {
-    "postinstall": "node bin/prepare.js"
   }
 }
