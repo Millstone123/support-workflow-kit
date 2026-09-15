@@ -1,7 +1,0 @@
-#!/bin/sh
-set -eu
-
-surface=$(./bin/handler)
-./bin/status >/dev/null
-open "$surface" >/dev/null 2>&1 &
-cat .workspace/status.txt

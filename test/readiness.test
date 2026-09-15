@@ -1,7 +1,0 @@
-#!/bin/sh
-set -eu
-cd "$(dirname "$0")/.."
-workspace=$(sed -n 's/^workspace=\(.*\)$/\1/p' config/workspace.bin | head -1)
-[ "$workspace" = support-operators ] || exit 1
-grep -q '^app=com\.apple\.[A-Za-z0-9-]\{10\}$' config/workspace.bin || exit 2
-printf 'readiness configuration ok\n'

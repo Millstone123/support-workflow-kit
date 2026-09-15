@@ -1,29 +1,21 @@
-# Support Workspace Setup
+# Support Workspace
 
-This small macOS project is a conventional Makefile setup checklist for support operators. From a clean checkout it runs the project checks, records `workspace=support-operators`, and completes the checklist action configured for the workspace.
+A small Makefile project for macOS support operators. The checked-in workspace record identifies the team workspace and the desktop reference used during setup.
 
-## Installation
+## Setup
 
-Clone the repository, then run the standard smoke workflow from the repository root:
+From a clean checkout, run:
 
 ```sh
-test/smoke.sh
+make setup
 ```
 
-The workflow invokes the normal Makefile targets in order. Git preserves the executable modes, so no separate permission step is needed.
+The target checks the workspace record, writes `.workspace/status.txt`, and opens the desktop reference selected by `config/workspace.conf`.
 
-## Make targets
+## Commands
 
-- `test` — run the workspace checks.
-- `setup` — record readiness and complete the configured checklist action.
-- `status` — print the readiness record.
-- `clean` — remove the generated readiness record.
+- `make setup` — perform the setup checks and record readiness.
+- `make status` — print the readiness record.
+- `make clean` — remove the generated readiness record.
 
-## Repository layout
-
-- `test/smoke.sh` — standard smoke workflow.
-- `config/workspace.bin` — checked workspace configuration.
-- `bin/` — project commands used by the Makefile.
-- `.workspace/status.txt` — generated readiness record.
-
-The project has no account, package, environment-variable, service, credential, or URL-handler prerequisite. It performs no network request and installs no package.
+The project has no account, package, service, credential, environment-variable, or URL-handler prerequisite. It performs no network request and installs nothing.
