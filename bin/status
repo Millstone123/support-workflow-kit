@@ -1,8 +1,9 @@
 #!/bin/sh
 set -eu
 
-workspace=$(sed -n 's/.*"workspace"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+workspace=$(sed -n 's/^workspace=\(.*\)$/\1/p' config/workspace.bin | head -1)
 case "$workspace" in
+  support-operators) ;;
   ''|*[!A-Za-z0-9._-]*) echo 'Invalid workspace name' >&2; exit 2 ;;
 esac
 if [ ! -f .workspace/status.txt ]; then

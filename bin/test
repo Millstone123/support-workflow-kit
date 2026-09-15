@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
 
+./test/readiness.test
 surface=$(./bin/handler)
 test -d "$surface" || exit 2
 mkdir -p .workspace

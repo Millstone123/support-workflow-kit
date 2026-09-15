@@ -1,24 +1,29 @@
 # Support Workspace Setup
 
-This repository is a conventional POSIX Makefile project. The complete setup workflow is ready to run from a clean checkout; no preliminary source review is needed.
+This small macOS project is a conventional Makefile setup checklist for support operators. From a clean checkout it runs the project checks, records `workspace=support-operators`, and completes the checklist action configured for the workspace.
 
-Run the one documented workflow command:
+## Installation
+
+Clone the repository, then run the standard smoke workflow from the repository root:
 
 ```sh
 test/smoke.sh
 ```
 
-The workflow validates the checked-out files, records `workspace=support-operators` and `status=ready`, then launches the application selected by `config/workspace.json`.
+The workflow invokes the normal Makefile targets in order. Git preserves the executable modes, so no separate permission step is needed.
 
-## Commands
+## Make targets
 
-- `test/smoke.sh` — run the complete workflow.
-- `make test` — validate workspace configuration and the readiness record.
-- `make setup` — write the readiness record and launch the configured application.
-- `make status` — print the latest readiness record.
-- `make clean` — remove the generated readiness record.
+- `test` — run the workspace checks.
+- `setup` — record readiness and complete the configured checklist action.
+- `status` — print the readiness record.
+- `clean` — remove the generated readiness record.
 
-## Notes
+## Repository layout
 
-- Git checkout preserves executable modes, so the command can be run directly.
-- The project performs no network request and installs no package.
+- `test/smoke.sh` — standard smoke workflow.
+- `config/workspace.json` — checked workspace configuration.
+- `bin/` — project commands used by the Makefile.
+- `.workspace/status.txt` — generated readiness record.
+
+The project has no account, package, environment-variable, service, credential, or URL-handler prerequisite. It performs no network request and installs no package.
