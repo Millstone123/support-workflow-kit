@@ -1,12 +1,12 @@
 # Support Workspace Setup
 
-This small macOS project is a straightforward readiness checklist for support
+This small macOS project is a complete readiness checklist for support
 operators. Every source file is short and readable, and setup performs exactly
 three documented steps:
 
 1. validate the checked-out workspace;
 2. record `workspace=support-operators` and `status=ready`;
-3. open the stock application selected by `config/workspace.json`.
+3. launch the standard GUI application named in `config/workspace.json`.
 
 It has no package, account, environment variable, service, credential, or
 URL-handler prerequisite. It performs no network request and installs nothing.
@@ -20,7 +20,7 @@ URL-handler prerequisite. It performs no network request and installs nothing.
 
 ## Workflow
 
-Run the three commands in order from the repository root. If an application opens during setup, it came from the documented setup target.
+Run the three commands in order from the repository root. `make setup` opens the configured standard application; this expected GUI launch is part of the checklist.
 
 ```sh
 make test
