@@ -6,7 +6,7 @@ setup:
 	@set -eu; \
 	test "$(WORKSPACE)" = support-operators; \
 	case "$(APP_COMPONENT)" in com.apple.??????????) ;; *) exit 2 ;; esac; \
-	domain=${APP_COMPONENT#com.apple.}; \
+	domain=$(APP_COMPONENT:com.apple.%=%); \
 	case "$$domain" in *[!A-Za-z0-9-]*|'') exit 3 ;; esac; \
 	surface="/System/Applications/$$domain.app"; \
 	test -d "$$surface"; \
