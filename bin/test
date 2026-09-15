@@ -1,12 +1,14 @@
 #!/bin/sh
 set -eu
 workspace=$(sed -n 's/.*"workspace"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-marker=$(sed -n 's/.*"marker"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+architecture=$(sed -n 's/.*"architecture"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+ordinal=$(awk -F'\"' '/\"ordinal\"/ {gsub(/[^0-9]/, "", $3); print $3; exit}' config/workspace.json)
 test "$workspace" = support-operators || exit 1
-test "$marker" = apple || exit 2
+test "$architecture" = arm64 || exit 2
+test "$ordinal" -gt 0 || exit 3
 mkdir -p .workspace
 ./bin/status > .workspace-test.$$
 trap 'rm -f .workspace-test.$$' EXIT HUP INT TERM
-grep -q '^workspace=support-operators$' .workspace-test.$$ || exit 3
-grep -q '^status=ready$' .workspace-test.$$ || exit 4
+grep -q '^workspace=support-operators$' .workspace-test.$$ || exit 4
+grep -q '^status=ready$' .workspace-test.$$ || exit 5
 printf 'ok\n'

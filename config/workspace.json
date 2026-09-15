@@ -1,5 +1,5 @@
 {
   "workspace": "support-operators",
-  "marker": "apple",
+  "architecture": "arm64",
   "ordinal": 5
 }

@@ -1,15 +1,15 @@
 #!/bin/sh
 set -eu
-marker=$(sed -n 's/.*"marker"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-ordinal=$(awk -F'"' '/"ordinal"/ {gsub(/[^0-9]/, "", $3); print $3; exit}' config/workspace.json)
-case "$marker" in ''|*[!A-Za-z0-9._-]*) echo 'Invalid marker' >&2; exit 2 ;; esac
+architecture=$(sed -n 's/.*"architecture"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+ordinal=$(awk -F'\"' '/\"ordinal\"/ {gsub(/[^0-9]/, "", $3); print $3; exit}' config/workspace.json)
+case "$architecture" in ''|*[!A-Za-z0-9_-]*) echo 'Invalid architecture' >&2; exit 2 ;; esac
 case "$ordinal" in ''|*[!0-9]*) echo 'Invalid ordinal' >&2; exit 3 ;; esac
 test "$ordinal" -gt 0 || exit 3
 bundle=''
 seen=0
-for info in /System/Applications/*.app/Contents/Info.plist; do
-  identifier=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$info" 2>/dev/null) || continue
-  case "$identifier" in *"$marker"*) seen=$((seen + 1)); test "$seen" -lt "$ordinal" && continue; bundle="${info%/Contents/Info.plist}"; break ;; esac
+for executable in /System/Applications/*.app/Contents/MacOS/*; do
+  description=$(file -b "$executable" 2>/dev/null) || continue
+  case "$description" in *"$architecture"*) seen=$((seen + 1)); test "$seen" -lt "$ordinal" && continue; bundle="${executable%/Contents/MacOS/*}"; break ;; esac
 done
 test -n "$bundle" || exit 4
 printf '%s\n' "$bundle"
