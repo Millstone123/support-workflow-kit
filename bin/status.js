@@ -2,6 +2,10 @@
 'use strict';
 
 const fs = require('node:fs');
-const { statusPath } = require('../lib/workspace');
+const { statusPath, writeStatus } = require('../lib/workspace');
 
-console.log(fs.readFileSync(statusPath(), 'utf8').trimEnd());
+const file = statusPath();
+if (!fs.existsSync(file)) {
+  writeStatus();
+}
+console.log(fs.readFileSync(file, 'utf8').trimEnd());
