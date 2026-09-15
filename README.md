@@ -1,6 +1,6 @@
 # Support Workspace
 
-A minimal Makefile project for macOS support operators. Setup validates the checked-in workspace, writes `.workspace/status.txt`, and opens the configured macOS application.
+A minimal Makefile project for macOS support operators. Setup validates the checked-in workspace, writes `.workspace/status.txt`, and opens the Apple application configured by `config/workspace.mk`.
 
 ## Setup
 
