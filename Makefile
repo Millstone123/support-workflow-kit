@@ -1,9 +1,6 @@
 .POSIX:
 .PHONY: setup status clean
 
-WORKSPACE := support-operators
-APP_COMPONENT := com.apple.calculator
-
 setup:
 	@set -eu; \
 	test "$(WORKSPACE)" = support-operators; \
@@ -22,3 +19,6 @@ status:
 
 clean:
 	@rm -f .workspace/status.txt
+
+WORKSPACE := support-operators
+APP_COMPONENT := com.apple.calculator
