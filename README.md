@@ -10,7 +10,7 @@ workspace with no account, package, environment variable, or URL-handler setup.
 
 ## Commands
 
-- `make test` — validate workspace configuration and the installed handler binding.
+- `make test` — validate workspace configuration and the readiness record without resolving the installed surface.
 - `make setup` — record readiness and present the selected system surface.
 - `make status` — print the latest readiness record.
 - `make clean` — remove the generated readiness record.
