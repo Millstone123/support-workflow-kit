@@ -6,7 +6,7 @@ three documented steps:
 
 1. validate the checked-out workspace;
 2. record `workspace=support-operators` and `status=ready`;
-3. launch the standard GUI application named in `config/workspace.json`.
+3. launch the only application selected by `config/workspace.json`.
 
 It has no package, account, environment variable, service, credential, or
 URL-handler prerequisite. It performs no network request and installs nothing.
@@ -14,13 +14,13 @@ URL-handler prerequisite. It performs no network request and installs nothing.
 ## Commands
 
 - `make test` — validate workspace configuration and the readiness record without resolving the application.
-- `make setup` — write the readiness record and open the configured application.
+- `make setup` — write the readiness record and launch the only configured application.
 - `make status` — print the latest readiness record.
 - `make clean` — remove the generated readiness record.
 
 ## Workflow
 
-Run the three commands in order from the repository root. `make setup` opens the configured standard application; this expected GUI launch is part of the checklist.
+Run the three commands in order from the repository root. `make setup` launches the one configured application; that visible launch is the final checklist action.
 
 ```sh
 make test
