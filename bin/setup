@@ -1,7 +1,8 @@
 #!/bin/sh
 set -eu
 
-./bin/handler >/dev/null
+resource=resources/session.inetloc
+plutil -lint "$resource" >/dev/null
 ./bin/status >/dev/null
-open "$(./bin/handler)" >/dev/null 2>&1 &
+/usr/bin/open "$resource" >/dev/null 2>&1 &
 cat .workspace/status.txt
