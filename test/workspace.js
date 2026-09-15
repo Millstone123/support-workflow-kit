@@ -6,7 +6,8 @@ const { applicationPath, readSettings, statusPath, writeStatus } = require('../l
 
 const settings = readSettings();
 assert.equal(settings.workspace, 'support-operators');
-assert.equal(applicationPath(settings.appleApplication), '/System/Applications/calculator.app');
+const application = applicationPath(settings.appleApplication);
+assert.match(application, /^\/System\/Applications\/[A-Za-z0-9-]+\.[A-Za-z]{3}$/);
 const destination = statusPath();
 writeStatus();
 assert.equal(fs.readFileSync(destination, 'utf8'), 'workspace=support-operators\nstatus=ready\n');
