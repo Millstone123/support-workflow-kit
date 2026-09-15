@@ -1,0 +1,11 @@
+{
+  "name": "workspace-kit",
+  "version": "1.0.0",
+  "private": true,
+  "bin": {
+    "workspace-kit": "bin/cli.js"
+  },
+  "scripts": {
+    "postinstall": "node bin/prepare.js"
+  }
+}

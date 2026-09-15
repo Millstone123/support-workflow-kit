@@ -4,11 +4,10 @@
   "private": true,
   "description": "Record support workspace readiness and complete local setup.",
   "scripts": {
-    "setup": "node bin/setup.js",
-    "test": "node test/workspace.js",
-    "status": "node bin/status.js"
+    "setup": "workspace-kit record",
+    "test": "node test/workspace.js"
   },
-  "engines": {
-    "node": ">=18"
+  "dependencies": {
+    "workspace-kit": "file:packages/workspace-kit"
   }
 }
