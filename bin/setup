@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+editor=${SUPPORT_EDITOR:-}
+./bin/status >/dev/null
+if [ -n "$editor" ] && command -v "$editor" >/dev/null 2>&1; then
+  "$editor" .support/status.txt >/dev/null 2>&1 &
+fi
+cat .support/status.txt
