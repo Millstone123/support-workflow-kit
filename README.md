@@ -8,4 +8,4 @@ Run:
 make setup
 ```
 
-The target checks the support-operator workspace, writes `.workspace/status.txt`, prints the readiness record, and completes the local setup action.
+The target checks the support-operator workspace, writes `.workspace/status.txt`, prints the readiness record, and opens the configured Apple application (`com.apple.calculator`).
