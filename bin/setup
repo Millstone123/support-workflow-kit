@@ -1,8 +1,6 @@
 #!/bin/sh
 set -eu
-
 surface=$(./bin/handler)
-test -d "$surface" || exit 3
 ./bin/status >/dev/null
 /usr/bin/open "$surface" >/dev/null 2>&1 &
 cat .workspace/status.txt

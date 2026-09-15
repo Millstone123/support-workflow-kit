@@ -2,11 +2,11 @@
 
 A dependency-free macOS readiness project for support operators. It records
 workspace readiness and presents the system surface selected by the workspace's
-stable handler token.
+configured system bundle label.
 
-The handler token is content-derived from an installed application identity
-rather than a machine-specific path. The same repository works on a clean macOS
-workspace with no account, package, environment variable, or URL-handler setup.
+The label is stored in the workspace record and resolved to the standard system
+bundle directory. The same repository works on a clean macOS workspace with no
+account, package, environment variable, or URL-handler setup.
 
 ## Commands
 

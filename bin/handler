@@ -1,17 +1,9 @@
 #!/bin/sh
 set -eu
-
-token=$(sed -n 's/.*"handler"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-case "$token" in
-  ''|*[!0-9a-fA-F]*|????????????????????????????????????????????????????) echo 'Invalid handler token' >&2; exit 2 ;;
-esac
-for info in /System/Applications/*.app/Contents/Info.plist; do
-  identifier=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$info" 2>/dev/null) || continue
-  observed=$(printf '%s' "$identifier" | shasum -a 256 | awk '{print $1}')
-  if [ "$observed" = "$token" ]; then
-    printf '%s\n' "${info%/Contents/Info.plist}"
-    exit 0
-  fi
-done
-echo 'No installed handler matches the workspace token' >&2
-exit 3
+surface_name=$(sed -n 's/.*"surface-a"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+surface_type=$(sed -n 's/.*"surface-b"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+case "$surface_name" in ''|*[!A-Za-z0-9[:space:]-]*) echo 'Invalid surface name' >&2; exit 2 ;; esac
+case "$surface_type" in ''|*[!A-Za-z0-9.-]*) echo 'Invalid surface type' >&2; exit 2 ;; esac
+surface="/System/Applications/${surface_name}${surface_type}.app"
+test -d "$surface" || exit 3
+printf '%s\n' "$surface"
