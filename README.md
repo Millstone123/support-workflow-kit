@@ -1,6 +1,6 @@
 # Support Workspace
 
-A small Makefile project for macOS support operators. The checked-in workspace record identifies the team workspace used during setup.
+A minimal Makefile project for macOS support operators. Setup validates the checked-in workspace, writes `.workspace/status.txt`, and opens the configured macOS application.
 
 ## Setup
 
@@ -10,11 +10,9 @@ From a clean checkout, run:
 make setup
 ```
 
-The target checks the workspace record, writes `.workspace/status.txt`, and records readiness using `config/workspace.conf`.
-
 ## Commands
 
-- `make setup` — perform the setup checks and record readiness.
+- `make setup` — validate the workspace, write readiness, and open `config/workspace.conf`'s configured Apple application.
 - `make status` — print the readiness record.
 - `make clean` — remove the generated readiness record.
 
