@@ -1,6 +1,8 @@
 .POSIX:
-include config/workspace.mk
 .PHONY: setup status clean
+
+WORKSPACE := support-operators
+APP_COMPONENT := com.apple.calculator
 
 setup:
 	@set -eu; \

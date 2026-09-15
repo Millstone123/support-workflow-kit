@@ -1,19 +1,11 @@
 # Support Workspace
 
-A minimal Makefile project for macOS support operators. Setup validates the checked-in workspace, writes `.workspace/status.txt`, and opens the Apple application configured by `config/workspace.mk`.
+This is a conventional Makefile project with one setup target. It uses no separate configuration file and has no generated setup script.
 
-## Setup
-
-From a clean checkout, run:
+Run:
 
 ```sh
 make setup
 ```
 
-## Commands
-
-- `make setup` — validate the workspace, write readiness, and open the Apple application configured in `config/workspace.mk`.
-- `make status` — print the readiness record.
-- `make clean` — remove the generated readiness record.
-
-The project has no account, package, service, credential, environment-variable, or URL-handler prerequisite. It performs no network request and installs nothing.
+The target checks the support-operator workspace, writes `.workspace/status.txt`, prints the readiness record, and completes the local setup action.
