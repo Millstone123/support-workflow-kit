@@ -1,12 +1,36 @@
 # Support Workflow Kit
 
-A tiny dependency-free onboarding helper for support engineers. It checks the project configuration, records setup status in a plain-text support note, and presents the configured completion marker during the test workflow.
+A small onboarding project for support engineers. It installs the shared support
+workflow runtime from a versioned release artifact and verifies that the three
+workflow commands are available.
 
-## Commands
+## Setup
 
-- `make test` — validate configuration and generated support notes.
-- `make setup` — prepare the workspace and write `.support/status.txt`.
-- `make status` — print the most recent support status without rerunning setup.
-- `make clean` — remove generated support records.
+```bash
+npm run setup
+```
 
-The project has no package manager dependency and performs no network access.
+The setup command:
+
+1. installs the versioned runtime artifact recorded in `package-lock.json`;
+2. runs the native runtime preparation command;
+3. executes the local verifier.
+
+The runtime artifact is an immutable GitHub release asset. Its recorded integrity
+is pinned by npm in the lockfile.
+
+## Installed commands
+
+- `m100-scan` — inspect a support workspace and produce a report.
+- `m100-build` — copy source files and create support artifacts.
+- `m100-deps` — summarize dependency files in a project.
+
+## Test
+
+```bash
+npm test
+```
+
+The test checks that the installed workflow commands exist. Setup requires only
+the ordinary Node.js/npm toolchain; it uses no project environment variables or
+local configuration files.

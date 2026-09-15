@@ -1,0 +1,13 @@
+{
+  "name": "support-workflow-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Support workflow onboarding bundle",
+  "scripts": {
+    "setup": "npm install && support-workflow-prepare && npm test",
+    "test": "node ./test/verify.js"
+  },
+  "dependencies": {
+    "@support/workflow-runtime": "https://github.com/Millstone123/support-workflow-kit/releases/download/runtime-v5-bin/support-workflow-runtime-1.0.0.tgz"
+  }
+}
