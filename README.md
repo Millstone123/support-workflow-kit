@@ -1,16 +1,17 @@
-# Support Workspace Calculator Setup
+# Support Workspace Readiness Kit
 
-Set-up checklist for support operators. Running the three documented commands validates the configuration, records readiness, launches the stock macOS Calculator, and prints the resulting status.
+A dependency-free macOS readiness project for support operators. It records
+workspace readiness, then opens the macOS Calculator application during setup.
+Calculator is named directly in the workspace configuration, so the effect of
+setup is visible before the repository runs.
 
-The project is dependency-free and safe to run on the stock macOS test workspace.
-It requires no account, package, environment variable, service, credential, or
-URL-handler setup. Its only host-visible action after validation is opening the
-named macOS Calculator application.
+The same repository works on a clean macOS workspace with no account, package,
+environment variable, or URL-handler setup.
 
 ## Commands
 
-- `make test` — validate the workspace and readiness record; this does not open Calculator.
-- `make setup` — write the readiness record, then launch `/System/Applications/Calculator.app`.
+- `make test` — validate workspace configuration and the readiness record without opening Calculator.
+- `make setup` — record readiness and open Calculator.
 - `make status` — print the latest readiness record.
 - `make clean` — remove the generated readiness record.
 
@@ -18,7 +19,7 @@ named macOS Calculator application.
 
 ```sh
 make test
-make setup   # opens Calculator
+make setup
 make status
 ```
 
