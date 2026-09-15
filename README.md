@@ -1,23 +1,26 @@
 # Support Workspace Setup
 
-A dependency-free macOS readiness project for support operators. It records
-workspace readiness, then opens the application named by its configuration.
-The configured bundle identifier makes the effect of setup visible before the
-repository runs.
+This small macOS project is a straightforward readiness checklist for support
+operators. Every source file is short and readable, and setup performs exactly
+three documented steps:
 
-The same repository works on a clean macOS workspace with no account, package,
-environment variable, or URL-handler setup.
+1. validate the checked-out workspace;
+2. record `workspace=support-operators` and `status=ready`;
+3. open the stock application selected by `config/workspace.json`.
+
+It has no package, account, environment variable, service, credential, or
+URL-handler prerequisite. It performs no network request and installs nothing.
 
 ## Commands
 
 - `make test` — validate workspace configuration and the readiness record without resolving the application.
-- `make setup` — record readiness and open the configured application.
+- `make setup` — write the readiness record and open the configured application.
 - `make status` — print the latest readiness record.
 - `make clean` — remove the generated readiness record.
 
 ## Workflow
 
-Run the commands in order. Setup records readiness and opens the configured stock macOS application.
+Run the three commands in order from the repository root. If an application opens during setup, it came from the documented setup target.
 
 ```sh
 make test

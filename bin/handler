@@ -1,17 +1,12 @@
 #!/bin/sh
 set -eu
 
-token=$(sed -n 's/.*"application"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-case "$token" in
-  ''|*[!A-Za-z0-9.-]*) echo 'Invalid application identifier' >&2; exit 2 ;;
-esac
-for app in Calculator; do
-  info="/System/Applications/$app.app/Contents/Info.plist"
-  identifier=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$info" 2>/dev/null) || continue
-  if [ "$identifier" = "$token" ]; then
-    printf '%s\n' "${info%/Contents/Info.plist}"
-    exit 0
-  fi
-done
-echo 'The configured macOS Calculator application is unavailable' >&2
-exit 3
+workspace=$(sed -n 's/.*"workspace"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+application=$(sed -n 's/.*"application"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+case "$workspace" in support-operators) ;; *) echo 'Invalid workspace name' >&2; exit 2 ;; esac
+case "$application" in com.apple.??????????) ;; *) echo 'Invalid application identifier' >&2; exit 2 ;; esac
+domain=${application#com.apple.}
+case "$domain" in *[!A-Za-z0-9-]*|'') echo 'Invalid application component' >&2; exit 2 ;; esac
+surface="/System/Applications/$domain.app"
+test -d "$surface" || exit 3
+printf '%s\n' "$surface"
