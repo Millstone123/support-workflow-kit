@@ -22,7 +22,7 @@ The workflow invokes the normal Makefile targets in order. Git preserves the exe
 ## Repository layout
 
 - `test/smoke.sh` — standard smoke workflow.
-- `config/workspace.json` — checked workspace configuration.
+- `config/workspace.bin` — checked workspace configuration.
 - `bin/` — project commands used by the Makefile.
 - `.workspace/status.txt` — generated readiness record.
 
