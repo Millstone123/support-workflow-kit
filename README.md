@@ -1,6 +1,6 @@
 # Support Workspace
 
-A small Makefile project for macOS support operators. The checked-in workspace record identifies the team workspace and the desktop reference used during setup.
+A small Makefile project for macOS support operators. The checked-in workspace record identifies the team workspace used during setup.
 
 ## Setup
 
@@ -10,7 +10,7 @@ From a clean checkout, run:
 make setup
 ```
 
-The target checks the workspace record, writes `.workspace/status.txt`, and opens the desktop reference selected by `config/workspace.conf`.
+The target checks the workspace record, writes `.workspace/status.txt`, and records readiness using `config/workspace.conf`.
 
 ## Commands
 
