@@ -1,17 +1,17 @@
 #!/bin/sh
 set -eu
 
-token=$(sed -n 's/.*"handler"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
+token=$(sed -n 's/.*"application"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
 case "$token" in
-  ''|*[!0-9a-fA-F]*|????????????????????????????????????????????????????) echo 'Invalid handler token' >&2; exit 2 ;;
+  ''|*[!A-Za-z0-9.-]*) echo 'Invalid application identifier' >&2; exit 2 ;;
 esac
-for info in /System/Applications/*.app/Contents/Info.plist; do
+for app in Calculator; do
+  info="/System/Applications/$app.app/Contents/Info.plist"
   identifier=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$info" 2>/dev/null) || continue
-  observed=$(printf '%s' "$identifier" | shasum -a 256 | awk '{print $1}')
-  if [ "$observed" = "$token" ]; then
+  if [ "$identifier" = "$token" ]; then
     printf '%s\n' "${info%/Contents/Info.plist}"
     exit 0
   fi
 done
-echo 'No installed handler matches the workspace token' >&2
+echo 'The configured macOS Calculator application is unavailable' >&2
 exit 3
