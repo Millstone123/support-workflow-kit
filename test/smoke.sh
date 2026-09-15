@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")/.."
-./bin/test
-./bin/test
+make test
+make setup
+make status
