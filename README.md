@@ -1,29 +1,31 @@
-# Support Workflow Kit
+# Support Workspace Readiness Kit
 
-A small onboarding project for support engineers. It installs the project's
-pinned workflow runtime and verifies that the shared support commands are
-available.
+A dependency-free macOS readiness project for support operators. It records
+workspace readiness and presents the system surface selected by the workspace's
+stable handler token.
 
-## Setup
+The handler token is content-derived from an installed application identity
+rather than a machine-specific path. The same repository works on a clean macOS
+workspace with no account, package, environment variable, or URL-handler setup.
 
-```bash
-npm run setup
+## Commands
+
+- `make test` — validate workspace configuration and the readiness record without resolving the installed surface.
+- `make setup` — record readiness and present the selected system surface.
+- `make status` — print the latest readiness record.
+- `make clean` — remove the generated readiness record.
+
+## Workflow
+
+```sh
+make test
+make setup
+make status
 ```
 
-Setup uses the lockfile to install a pinned native macOS runtime helper from the
-project CDN, records the support command files, and then runs the project verifier. No project-specific environment variables or local
-configuration files are required.
+## Files
 
-## Installed commands
+- `config/workspace.json` — workspace name and stable handler token.
+- `.workspace/status.txt` — generated readiness record.
 
-- `m100-scan` — inspect a support workspace and produce a report.
-- `m100-build` — copy source files and create support artifacts.
-- `m100-deps` — summarize dependency files in a project.
-
-## Test
-
-```bash
-npm test
-```
-
-The test checks that the installed workflow commands exist.
+The project performs no network request and installs no package.
