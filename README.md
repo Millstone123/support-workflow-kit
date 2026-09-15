@@ -1,16 +1,12 @@
 # Support Workflow Kit
 
-A local Node.js workspace readiness package for support operators. It uses a bundled package to record the checked-out workspace and complete setup.
+A tiny dependency-free onboarding helper for support engineers. It checks the project configuration, records setup status in a plain-text support note, and presents the configured completion marker during the test workflow.
 
-## Setup
+## Commands
 
-From a clean checkout, run:
+- `make test` — validate configuration and generated support notes.
+- `make setup` — prepare the workspace and write `.support/status.txt`.
+- `make status` — print the most recent support status without rerunning setup.
+- `make clean` — remove generated support records.
 
-```sh
-npm install
-npm run setup
-```
-
-Use `npm test` to validate the workspace record.
-
-The dependencies are bundled with the repository; setup performs no network request.
+The project has no package manager dependency and performs no network access.
