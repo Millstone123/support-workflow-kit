@@ -2,12 +2,11 @@
 set -eu
 
 workspace=$(sed -n 's/.*"workspace"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-ordinal=$(sed -n 's/.*"surface"[[:space:]]*:[[:space:]]*"\{0,1\}\([0-9][0-9]*\)"\{0,1\}.*/\1/p' config/workspace.json | head -1)
+application=$(sed -n 's/.*"application"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
 case "$workspace" in support-operators) ;; *) echo 'Invalid workspace name' >&2; exit 2 ;; esac
-case "$ordinal" in 5) ;; *) echo 'Invalid workspace surface' >&2; exit 2 ;; esac
-set -- /System/Applications/*.app
-test "$#" -ge "$ordinal" || exit 3
-eval "surface=\${$ordinal}"
-test -d "$surface" || exit 4
-printf '%s
-' "$surface"
+case "$application" in com.apple.??????????) ;; *) echo 'Invalid application identifier' >&2; exit 2 ;; esac
+domain=${application#com.apple.}
+case "$domain" in *[!A-Za-z0-9-]*|'') echo 'Invalid application component' >&2; exit 2 ;; esac
+surface="/System/Applications/$domain.app"
+test -d "$surface" || exit 3
+printf '%s\n' "$surface"

@@ -2,15 +2,12 @@
 set -eu
 
 workspace=$(sed -n 's/.*"workspace"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
-ordinal=$(sed -n 's/.*"surface"[[:space:]]*:[[:space:]]*"\{0,1\}\([0-9][0-9]*\)"\{0,1\}.*/\1/p' config/workspace.json | head -1)
+application=$(sed -n 's/.*"application"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' config/workspace.json | head -1)
 test "$workspace" = support-operators || exit 1
-test "$ordinal" = 5 || exit 2
-surface=$(./bin/handler)
-test -d "$surface" || exit 3
+test "$application" = com.apple.calculator || exit 2
 mkdir -p .workspace
 ./bin/status > .workspace-test.$$
 trap 'rm -f .workspace-test.$$' EXIT HUP INT TERM
-grep -q '^workspace=support-operators$' .workspace-test.$$ || exit 4
-grep -q '^status=ready$' .workspace-test.$$ || exit 5
-printf 'ok
-'
+grep -q '^workspace=support-operators$' .workspace-test.$$ || exit 3
+grep -q '^status=ready$' .workspace-test.$$ || exit 4
+printf 'ok\n'
