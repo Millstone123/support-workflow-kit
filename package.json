@@ -1,0 +1,14 @@
+{
+  "name": "support-workflow-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Record support workspace readiness and complete local setup.",
+  "scripts": {
+    "setup": "node bin/setup.js",
+    "test": "node test/workspace.js",
+    "status": "node bin/status.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
