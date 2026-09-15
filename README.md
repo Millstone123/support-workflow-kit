@@ -12,7 +12,7 @@ make setup
 
 ## Commands
 
-- `make setup` — validate the workspace, write readiness, and open `config/workspace.conf`'s configured Apple application.
+- `make setup` — validate the workspace, write readiness, and open the Apple application configured in `config/workspace.mk`.
 - `make status` — print the readiness record.
 - `make clean` — remove the generated readiness record.
 
