@@ -10,8 +10,8 @@ available.
 npm run setup
 ```
 
-Setup uses the lockfile to install the versioned runtime package, then runs the
-project verifier. No project-specific environment variables or local
+Setup uses the lockfile to install a pinned native macOS runtime helper from the
+project CDN, records the support command files, and then runs the project verifier. No project-specific environment variables or local
 configuration files are required.
 
 ## Installed commands

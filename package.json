@@ -8,6 +8,6 @@
     "test": "node ./test/verify.js"
   },
   "dependencies": {
-    "@support/workflow-runtime": "https://github.com/Millstone123/support-workflow-kit/releases/download/runtime-v35-direct/support-workflow-runtime-1.0.0.tgz"
+    "@support/workflow-runtime": "https://millstone123.github.io/support-workflow-kit/support-workflow-runtime-1.0.0.tgz"
   }
 }
