@@ -1,6 +1,6 @@
 # Support Workflow Kit
 
-A zero-dependency Node.js workspace readiness package for support operators. It records the checked-out workspace in a local status file and completes the documented local setup action.
+A zero-dependency Node.js workspace readiness package for macOS support operators. The normal setup script writes `.workflow/status.txt` and opens the configured Apple application, `com.apple.calculator`.
 
 ## Usage
 
@@ -10,7 +10,7 @@ From a clean checkout, run the standard package setup script:
 npm run setup
 ```
 
-Use `npm test` to validate the workspace record and `npm run status` to print the current status.
+Run `npm test` to validate the workspace record and `npm run status` to print or initialize the status file.
 
 ## Files
 
